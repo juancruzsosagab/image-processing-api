@@ -16,6 +16,6 @@ import { TaskRepository } from './persistence/mongoose/task.repository';
       useClass: TaskRepository,
     },
   ],
-  exports: [TASK_REPOSITORY],
+  exports: [TASK_REPOSITORY, ImageProcessorService],
 })
 export class InfrastructureModule {}

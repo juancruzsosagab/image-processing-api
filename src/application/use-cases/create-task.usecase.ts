@@ -12,19 +12,27 @@ export class CreateTaskUseCase {
     private readonly taskRepository: TaskRepositoryPort,
   ) {}
 
-  async execute(input: Partial<TaskProps>): Promise<TaskProps> {
-    if (!input.status) {
-      throw new Error('Status is required');
-    }
-    if (input.price == null) {
-      throw new Error('Price is required');
+  async execute(props: Partial<TaskProps>) {
+    if (!props.originalPath) {
+      throw new Error('originalPath is required');
     }
 
-    return this.taskRepository.create({
-      status: input.status,
-      price: input.price,
-      originalPath: input.originalPath,
-      images: input.images ?? [],
+    const status = 'pending';
+    const price = this.calculateRandomPrice();
+
+    const newTask = await this.taskRepository.create({
+      originalPath: props.originalPath,
+      status,
+      price,
     });
+
+    return newTask;
+  }
+
+  /**
+   * Generates a random price between 5 and 50 (inclusive).
+   */
+  private calculateRandomPrice(): number {
+    return Math.round((Math.random() * (50 - 5) + 5) * 100) / 100;
   }
 }
