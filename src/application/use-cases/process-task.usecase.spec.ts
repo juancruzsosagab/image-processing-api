@@ -45,7 +45,9 @@ describe('ProcessTaskUseCase', () => {
   it('should throw NotFoundException if task does not exist', async () => {
     (mockTaskRepository.findById as jest.Mock).mockResolvedValue(null);
 
-    await expect(useCase.execute('nonexistent')).rejects.toThrow(NotFoundException);
+    await expect(useCase.execute('nonexistent')).rejects.toThrow(
+      NotFoundException,
+    );
     expect(mockTaskRepository.findById).toHaveBeenCalledWith('nonexistent');
   });
 
@@ -59,7 +61,9 @@ describe('ProcessTaskUseCase', () => {
     };
     (mockTaskRepository.findById as jest.Mock).mockResolvedValue(task);
 
-    await expect(useCase.execute('task123')).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute('task123')).rejects.toThrow(
+      BadRequestException,
+    );
     expect(mockTaskRepository.findById).toHaveBeenCalledWith('task123');
   });
 

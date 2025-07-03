@@ -87,7 +87,7 @@ describe('Tasks API (e2e)', () => {
     expect(body.status).toBe('completed');
     expect(typeof body.price).toBe('number');
     expect(body.images).toBeInstanceOf(Array);
-    expect(body.images!.length).toBe(2);
+    expect(body.images!).toHaveLength(2);
 
     for (const img of body.images!) {
       expect(['1024', '800']).toContain(img.resolution);
