@@ -1,10 +1,11 @@
+import { TaskProps } from '../../../domain/models/task.props';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type TaskDocument = Task & Document;
 
 @Schema({ timestamps: true })
-export class Task {
+export class Task implements TaskProps {
   @Prop({ required: true })
   status: 'pending' | 'completed' | 'failed';
 
@@ -12,13 +13,16 @@ export class Task {
   price: number;
 
   @Prop()
-  originalPath: string;
+  originalPath?: string;
 
   @Prop({
     type: [{ resolution: String, path: String }],
     default: [],
   })
-  images: { resolution: string; path: string }[];
+  images?: { resolution: string; path: string }[];
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);
