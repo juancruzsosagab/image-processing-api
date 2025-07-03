@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  NotFoundException,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { CreateTaskUseCase } from '../../application/use-cases/create-task.usecase';
 import { GetTaskUseCase } from '../../application/use-cases/get-task.usecase';
 import { TaskProps } from '../../domain/models/task.props';
-import { ProcessTaskUseCase } from 'src/application/use-cases/process-task.usecase';
+import { ProcessTaskUseCase } from '../../application/use-cases/process-task.usecase';
 
 @Controller('tasks')
 export class TaskController {
@@ -34,7 +42,7 @@ export class TaskController {
     });
 
     return {
-      taskId: task.id,
+      id: task.id,
       status: task.status,
       price: task.price,
     };
@@ -46,6 +54,8 @@ export class TaskController {
    */
   @Get(':id')
   async getById(@Param('id') id: string): Promise<TaskProps | null> {
-    return this.getTaskUseCase.execute(id);
+    const task = await this.getTaskUseCase.execute(id);
+    if (!task) throw new NotFoundException(`Task ${id} not found`);
+    return task;
   }
 }
