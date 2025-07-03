@@ -8,6 +8,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+      - ./input:/input
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -26,5 +27,16 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
 
+  seed:
+    image: node:22
+    container_name: image-processing-seed
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://root:example@mongo:27017/admin
+    command: ["npm", "run", "seed"]
 volumes:
   mongo-data:
