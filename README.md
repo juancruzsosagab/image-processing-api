@@ -53,7 +53,7 @@ The API allows clients to:
 
 1. Clone the repository:
 ```
-git clone <repository-url>
+git clone https://github.com/juancruzsosagab/image-processing-api.git
 cd image-processing-api
 ```
 
@@ -73,6 +73,8 @@ This will start the database, admin UI, and run the seed script automatically.
 ```
 npm run start:dev
 ```
+
+Then open your browser and navigate to http://localhost:3000 to access the app.
 
 5. Run tests:
 - Unit and integration tests with coverage:
@@ -98,3 +100,4 @@ npm run start:dev
 - The seed script loads initial data to MongoDB automatically during docker-compose startup.
 - API endpoints are documented and ready for testing (Postman collection included).
 - Commits follow Conventional Commits format.
+-For simplicity, database credentials are included in the docker-compose.yml and .env.example. This is not recommended for production and is done here solely to ease setup and evaluation.
