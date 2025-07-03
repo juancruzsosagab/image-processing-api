@@ -13,7 +13,9 @@ import { TaskProps } from '../../domain/models/task.props';
 import { ProcessTaskUseCase } from '../../application/use-cases/process-task.usecase';
 import { CreateTaskDto } from '../dto/create-task.dto';
 import { GetTaskDto } from '../dto/get-task.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('tasks')
 @Controller('tasks')
 export class TaskController {
   private readonly logger = new Logger(TaskController.name);

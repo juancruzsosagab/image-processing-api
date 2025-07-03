@@ -11,7 +11,13 @@ The API allows clients to:
 
 ---
 
+
 ## Features & Implementation Details
+
+- **Swagger/OpenAPI Documentation:**
+  - The API is documented using Swagger (OpenAPI).
+  - You can explore and test all endpoints interactively at [http://localhost:3000/api](http://localhost:3000/api) once the server is running.
+  - Swagger configuration is included in the project setup.
 
 - **Image Processing Delay (Sleep):**  
   To demonstrate the "pending" state on task creation, the image processing service intentionally waits 4 seconds before processing. This delay allows clients to observe a `pending` status immediately after task creation.
@@ -80,7 +86,12 @@ npm run start:dev
 
 ---
 
+
 ## Additional Information
+
+- **API Documentation (Swagger):**
+  - The Swagger UI is available at `/api`.
+  - All endpoints, request/response schemas are documented there.
 
 - The image processing includes a 4-second delay to simulate pending state immediately after task creation.
 - Mongo Express is available at [http://localhost:8081](http://localhost:8081).
