@@ -6,6 +6,7 @@ export interface TaskImage {
 }
 
 export interface TaskProps {
+  id?: string;
   status: TaskStatus;
   price: number;
   originalPath?: string;
