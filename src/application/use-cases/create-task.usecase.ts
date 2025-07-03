@@ -1,10 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { TaskRepositoryPort } from '../../domain/ports/task-repository.port';
+import { Inject, Injectable } from '@nestjs/common';
 import { TaskProps } from '../../domain/models/task.props';
+import {
+  TASK_REPOSITORY,
+  TaskRepositoryPort,
+} from '../../domain/ports/task-repository.port';
 
 @Injectable()
 export class CreateTaskUseCase {
-  constructor(private readonly taskRepository: TaskRepositoryPort) {}
+  constructor(
+    @Inject(TASK_REPOSITORY)
+    private readonly taskRepository: TaskRepositoryPort,
+  ) {}
 
   async execute(input: Partial<TaskProps>): Promise<TaskProps> {
     if (!input.status) {

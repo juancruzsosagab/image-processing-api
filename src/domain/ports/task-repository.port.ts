@@ -13,3 +13,5 @@ export interface TaskRepositoryPort {
 
   updateStatus(taskId: string, status: TaskStatus): Promise<void>;
 }
+
+export const TASK_REPOSITORY = Symbol('TASK_REPOSITORY');
