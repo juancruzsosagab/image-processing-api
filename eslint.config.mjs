@@ -3,7 +3,7 @@ import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-
+import pluginJest from 'eslint-plugin-jest';
 export default tseslint.config(
   {
     ignores: ['eslint.config.mjs'],
@@ -12,6 +12,7 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   eslintPluginPrettierRecommended,
   {
+    plugins: { jest: pluginJest },
     languageOptions: {
       globals: {
         ...globals.node,
@@ -26,15 +27,14 @@ export default tseslint.config(
   },
   {
     rules: {
-      ...require('eslint-plugin-jest').configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
-    },
-  },
-  {
-    plugins: {
-      jest: require('eslint-plugin-jest'),
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error',
     },
   },
 );
