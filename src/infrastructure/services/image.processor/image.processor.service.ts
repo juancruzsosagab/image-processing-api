@@ -40,7 +40,7 @@ export class ImageProcessorService {
       return;
     }
     // Simulate processing delay for testing "pending" state
-    await this.sleep(5000);
+    await this.sleep(4000);
 
     try {
       // Load the original image (local or URL)
