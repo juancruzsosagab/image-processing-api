@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProcessTaskUseCase } from './process-task.usecase';
 import {
@@ -21,6 +22,7 @@ describe('ProcessTaskUseCase', () => {
       updateStatus: jest.fn(),
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     mockImageProcessorService = {
       processTask: jest.fn(),
     } as any;

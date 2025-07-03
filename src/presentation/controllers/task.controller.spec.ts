@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TaskController } from './task.controller';
 import { CreateTaskUseCase } from '../../application/use-cases/create-task.usecase';
@@ -76,6 +77,7 @@ describe('TaskController', () => {
 
       (createTaskUseCase.execute as jest.Mock).mockResolvedValue(mockTask);
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const loggerErrorSpy = jest.spyOn((controller as any).logger, 'error');
 
       const result = await controller.createTask({
@@ -103,6 +105,7 @@ describe('TaskController', () => {
       const error = new Error('Processing failed');
       (processTaskUseCase.execute as jest.Mock).mockRejectedValue(error);
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const loggerErrorSpy = jest.spyOn((controller as any).logger, 'error');
 
       await controller.createTask({ originalPath: 'input/image.jpg' });

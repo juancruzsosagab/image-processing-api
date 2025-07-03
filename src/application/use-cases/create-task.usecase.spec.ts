@@ -48,6 +48,7 @@ describe('CreateTaskUseCase', () => {
     expect(typeof result.price).toBe('number');
     expect(result.price).toBeGreaterThanOrEqual(5);
     expect(result.price).toBeLessThanOrEqual(50);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(mockTaskRepository.create).toHaveBeenCalledWith(
       expect.objectContaining({
         originalPath: props.originalPath,
