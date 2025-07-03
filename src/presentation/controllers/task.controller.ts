@@ -11,6 +11,8 @@ import { CreateTaskUseCase } from '../../application/use-cases/create-task.useca
 import { GetTaskUseCase } from '../../application/use-cases/get-task.usecase';
 import { TaskProps } from '../../domain/models/task.props';
 import { ProcessTaskUseCase } from '../../application/use-cases/process-task.usecase';
+import { CreateTaskDto } from '../dto/create-task.dto';
+import { GetTaskDto } from '../dto/get-task.dto';
 
 @Controller('tasks')
 export class TaskController {
@@ -26,7 +28,7 @@ export class TaskController {
    * Creates a new task.
    */
   @Post()
-  async createTask(@Body() body: Partial<TaskProps>) {
+  async createTask(@Body() body: CreateTaskDto) {
     const task = await this.createTaskUseCase.execute(body);
 
     if (!task.id) {
@@ -53,9 +55,9 @@ export class TaskController {
    * Retrieves a task by ID.
    */
   @Get(':id')
-  async getById(@Param('id') id: string): Promise<TaskProps | null> {
-    const task = await this.getTaskUseCase.execute(id);
-    if (!task) throw new NotFoundException(`Task ${id} not found`);
+  async getById(@Param() params: GetTaskDto): Promise<TaskProps | null> {
+    const task = await this.getTaskUseCase.execute(params.id);
+    if (!task) throw new NotFoundException(`Task ${params.id} not found`);
     return task;
   }
 }

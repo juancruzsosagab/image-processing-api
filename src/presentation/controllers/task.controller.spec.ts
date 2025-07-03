@@ -126,7 +126,7 @@ describe('TaskController', () => {
 
       (getTaskUseCase.execute as jest.Mock).mockResolvedValue(mockTask);
 
-      const result = await controller.getById('task123');
+      const result = await controller.getById({ id: 'task123' });
 
       expect(getTaskUseCase.execute).toHaveBeenCalledWith('task123');
       expect(result).toEqual(mockTask);
@@ -135,7 +135,7 @@ describe('TaskController', () => {
     it('should throw NotFoundException if task not found', async () => {
       (getTaskUseCase.execute as jest.Mock).mockResolvedValue(null);
 
-      await expect(controller.getById('nonexistent')).rejects.toThrow(
+      await expect(controller.getById({ id: 'nonexistent' })).rejects.toThrow(
         NotFoundException,
       );
       expect(getTaskUseCase.execute).toHaveBeenCalledWith('nonexistent');
