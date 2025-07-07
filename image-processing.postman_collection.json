@@ -34,6 +34,33 @@
 			"response": []
 		},
 		{
+			"name": "Start Task (remote) - Failed example",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"originalPath\": \"https://picsum.photosasd/400/300asd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Start Task (local)",
 			"request": {
 				"method": "POST",
@@ -73,7 +100,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"status\": \"pending\",\r\n  \"price\": 150\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "localhost:3000/tasks/{{id}}",
