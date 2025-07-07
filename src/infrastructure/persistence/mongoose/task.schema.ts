@@ -6,7 +6,7 @@ export type TaskDocument = Task & Document;
 
 @Schema({ timestamps: true })
 export class Task implements TaskProps {
-  @Prop({ required: true })
+  @Prop({ required: true, index: true })
   status: 'pending' | 'completed' | 'failed';
 
   @Prop({ required: true })
